@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Pra Depois</title>
+  <meta name="description" content="Sua fila de artigos, vídeos, capítulos e podcasts para consumir depois.">
+  <meta name="theme-color" content="#EDF0F4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0E141B" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Pra Depois">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Pra Depois<span>.</span></h1>
+    <div class="head-right">
+      <div class="summary" id="summary"></div>
+      <div class="head-actions">
+        <button class="btn" id="install" type="button" hidden>Instalar app</button>
+        <button class="btn ghost" id="export" type="button">Exportar</button>
+        <label class="btn ghost" for="import-file">Importar</label>
+        <input class="sr-only" id="import-file" type="file" accept="application/json,.json">
+      </div>
+    </div>
+  </header>
+  <div class="notice" id="notice" hidden></div>
+
+  <section class="capture" aria-label="Adicionar item">
+    <form class="capture-row" id="quick">
+      <input id="q-input" type="text" autocomplete="off" placeholder="Cole um link ou escreva o que quer consumir" aria-label="Link ou título">
+      <button class="btn primary" type="submit">Guardar</button>
+    </form>
+    <div id="quick-details" hidden></div>
+  </section>
+
+  <div class="toolbar">
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="filters">
+      <input id="search" type="search" placeholder="Buscar título, tag, nota…" aria-label="Buscar">
+      <label class="timebox">Tenho
+        <select id="time" aria-label="Tempo disponível">
+          <option value="0">qualquer tempo</option>
+          <option value="5">5 min</option>
+          <option value="15">15 min</option>
+          <option value="30">30 min</option>
+          <option value="60">1 hora</option>
+          <option value="120">2 horas</option>
+        </select>
+      </label>
+      <select id="sort" aria-label="Ordenar">
+        <option value="smart">Ordem: prioridade + prazo</option>
+        <option value="due">Ordem: prazo</option>
+        <option value="new">Ordem: mais recentes</option>
+        <option value="short">Ordem: mais curtos</option>
+      </select>
+    </div>
+    <div class="filters" id="typefilters"></div>
+    <div class="filters" id="tagfilters"></div>
+  </div>
+
+  <main class="list" id="list" aria-live="polite"></main>
+</div>
+<div id="overlay-root"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+<noscript><p style="padding:16px">O Pra Depois precisa de JavaScript ativado.</p></noscript>
+</body>
+</html>
